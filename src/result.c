@@ -28,7 +28,7 @@ Result make_result(bool success, const char *fmt, ...)
 	return result;
 }
 
-Result make_result_success()
+Result make_result_success(void)
 {
 	Result result = {true, ""};
 	return result;

@@ -11,6 +11,6 @@ typedef struct {
 
 Result make_result_error(int errno_val);
 Result make_result(bool success, const char *fmt, ...);
-Result make_result_success();
+Result make_result_success(void);
 
 #endif // RESULT_H
