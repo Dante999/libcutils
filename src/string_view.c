@@ -36,18 +36,31 @@ bool sv_eq_cstr(const String_View *sv, const char *s)
 	return (strncmp(sv->data, s, sv->length) == 0 ? true : false);
 }
 
-// TODO: Buggy function, returns garbage
 String_View sv_ltrim(const String_View *sv)
 {
-	String_View sv_trimmed = {sv->data, sv->length};
-
-	for( size_t i=0; i < sv->length; ++i) {
-
-		if (!is_whitespace(sv->data[i])) {
-			sv_trimmed.data   += i;
-			sv_trimmed.length -= i;
-		}
+	size_t i=0; 
+	while (i < sv->length && is_whitespace(sv->data[i])) {
+		++i;
 	}
 
-	return sv_trimmed;
+	return sv_from_parts(sv->data + i, sv->length -i);
 }
+
+
+String_View sv_rtrim(const String_View *sv)
+{
+	size_t i = sv->length;
+	while (i > 0 && is_whitespace(sv->data[i-1])) {
+		--i;
+	}
+
+	return sv_from_parts(sv->data, i);
+}
+
+String_View sv_copy(const String_View *sv)
+{
+	return sv_from_parts(sv->data, sv->length);
+}
+
+
+

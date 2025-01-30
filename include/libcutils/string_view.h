@@ -12,8 +12,10 @@ typedef struct {
 
 String_View sv_from_parts(const char *s, size_t len);
 String_View sv_from_cstr(const char *s);
-
 bool sv_eq_cstr(const String_View *sv, const char *s);
 
+String_View sv_copy(const String_View *sv);
 String_View sv_ltrim(const String_View *sv);
+String_View sv_rtrim(const String_View *sv);
+
 #endif // STRING_VIEW_H
