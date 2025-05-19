@@ -1,7 +1,6 @@
 #include "libcutils/arg_parser.h"
 
 
-#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -193,7 +192,7 @@ const char *args_gets(const char *key)
 	return NULL;
 }
 
-int config_geti(const char *key)
+int args_geti(const char *key)
 {
 	for (size_t i = 0; i < g_args.count; ++i) {
 
