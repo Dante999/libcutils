@@ -126,7 +126,7 @@ void args_help(const char *program_name)
 	}
 }
 
-void args_print()
+void args_print(void)
 {
 	printf("###########################################\n");
 	printf("# CURRENT ARGUMENT VALUES                 #\n");
@@ -157,7 +157,7 @@ Result args_parse(int argc, char *argv[])
 	return make_result_success();
 }
 
-Result args_verify() {
+Result args_verify(void) {
 
 	for (size_t j=0; j < g_args.count; ++j) {
 		Arg *stored_arg = &g_args.entries[j];
@@ -194,14 +194,7 @@ const char *args_gets(const char *key)
 
 int args_geti(const char *key)
 {
-	for (size_t i = 0; i < g_args.count; ++i) {
-
-		if (strncmp(g_args.entries[i].key, key, MAX_KEY_LEN) == 0) {
-			return atoi(g_args.entries[i].value);
-		}
-	}
-
-	return 0;
+	return atoi(args_gets(key));
 }
 
 bool args_get_flag(const char *key)
