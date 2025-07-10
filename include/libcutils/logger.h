@@ -45,7 +45,9 @@
  * -Wpedantic flag. __FILE__ itself contains the whole filepath, which could be pretty long, so this macro just returns
  * the filename and nothing else.
  */
-#define LOG_LOCATION ( strrchr( __FILE__, '/' ) + 1 )
+//#define LOG_LOCATION ( strrchr( __FILE__, '/' ) + 1 )
+#define LOG_LOCATION __FILE__
+
 
 #if LOG_LEVEL > LOG_LEVEL_TRACE
 	#define log_trace( ... )
@@ -80,7 +82,7 @@
 /* *****************************************************************************
  * Implementation
  ******************************************************************************/
-#ifdef RESULT_IMPLEMENTATION
+#ifdef LOGGER_IMPLEMENTATION
 
 /*
  * only implement logging functions and file content if logging is enabled,
@@ -122,5 +124,5 @@ void simple_logger(const char *level, const char *location, int line,
 }
 
 #endif // #if LOG_LEVEL != LOG_LEVEL_NONE%
-#endif // RESULT_IMPLEMENTATION
+#endif // LOGGER_IMPLEMENTATION
 #endif
