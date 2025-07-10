@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 extern void main_test_util_makros(void);
 extern void main_test_result(void);
 extern void main_test_string_view(void);

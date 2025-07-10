@@ -1,5 +1,6 @@
 #include "testutils.h"
 
+#define STRING_VIEW_IMPLEMENTATION
 #include "libcutils/string_view.h"
 
 #include <string.h>

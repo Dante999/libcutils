@@ -1,33 +1,34 @@
 #include "testutils.h"
 
+#define RESULT_IMPLEMENTATION
 #include "libcutils/result.h"
 
 #include <errno.h>
 
 static void test_result__success(void)
 {
-	Result res = make_result(true, "success!");
+	Result res = result_make(true, "success!");
 
 	TEST_ASSERT_EQ_BOOL(true, res.success);
 }
 
 static void test_result__fail(void)
 {
-	Result res = make_result(false, "failed!");
+	Result res = result_make(false, "failed!");
 
 	TEST_ASSERT_EQ_BOOL(false, res.success);
 }
 
 static void test_result__from_errno(void)
 {
-	Result res = make_result_error(EEXIST);
+	Result res = result_make_error(EEXIST);
 
 	TEST_ASSERT_EQ_BOOL(false, res.success);
 }
 
 static void test_result__fmt(void)
 {
-	Result res = make_result(true, "hello %s!", "world");
+	Result res = result_make(true, "hello %s!", "world");
 
 	TEST_ASSERT_EQ_BOOL(true, res.success);
 	TEST_ASSERT_EQ_STR("hello world!", res.msg);
